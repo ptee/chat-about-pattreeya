@@ -1,5 +1,4 @@
-import os
-import streamlit as st
+# This is a simple chatbot application using LangChain, Streamlit and Supabase VectorStore.
 from langchain.agents import AgentExecutor
 from langchain.agents import create_tool_calling_agent
 from langchain_openai import ChatOpenAI
@@ -9,7 +8,7 @@ from langchain_core.messages import SystemMessage, AIMessage, HumanMessage
 from langchain_core.tools import tool
 from langchain_community.vectorstores import SupabaseVectorStore
 from supabase.client import Client, create_client
-
+import streamlit as st
 
 # Initiating Supabase
 supabase_url = st.secrets["supabase"]["url"]
