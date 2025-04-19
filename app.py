@@ -10,17 +10,17 @@ from langchain_community.vectorstores import SupabaseVectorStore
 from supabase.client import Client, create_client
 import streamlit as st
 
-# Initiating Supabase
+# Initiate Supabase
 supabase_url = st.secrets["supabase"]["url"]
 supabase_key = st.secrets["supabase"]["service_key"]
 supabase: Client = create_client(supabase_url, supabase_key)
 
-# Initiating embeddings model
+# Initiate embeddings model
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
     openai_api_key=st.secrets["openai"]["api_key"])
 
-# Initiating vector store
+# Initiate vector store
 vector_store = SupabaseVectorStore(
     embedding=embeddings,
     client=supabase,
@@ -28,7 +28,7 @@ vector_store = SupabaseVectorStore(
     query_name="match_documents",
 )
  
-# Initiating llm
+# Initiate llm
 llm = ChatOpenAI(
         model="gpt-4o-mini",
         temperature=0, 
@@ -45,7 +45,7 @@ prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-# Creating the retriever tool
+# Create the retriever tool
 @tool("retrieve_db")
 def retrieve_db(query: str):
     """ Retrieve information related to a question."""
@@ -58,10 +58,10 @@ def retrieve_db(query: str):
     return serialized, retrieved_docs
 
 
-# Combining all tools
+# Combine all tools
 tools = [ retrieve_db ]
 
-# Initiating the agent
+# Initiate the agent
 agent = create_tool_calling_agent(llm, tools, prompt)
 
 # Create the agent executor
