@@ -30,7 +30,7 @@ vector_store = SupabaseVectorStore(
  
 # Initiate llm
 llm = ChatOpenAI(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         temperature=0, 
         openai_api_key=st.secrets["openai"]["api_key"]
     )
