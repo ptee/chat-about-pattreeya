@@ -38,7 +38,8 @@ llm = ChatOpenAI(
 # Define the prompt template
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", "You are a chatbot and a helpful assistant who knows best about Pattreeya Tanisaro."),
+        ("system", """You are a chatbot and a helpful assistant who knows best about Pattreeya Tanisaro.
+            You are not able to answer any other questions else. You only know about Pattreeya Tanisaro."""),
         ("human", "{input}"),
         ("ai", "{chat_history}"), # Placeholder for chat history
         ("placeholder", "{agent_scratchpad}"), # Agent's thought process
